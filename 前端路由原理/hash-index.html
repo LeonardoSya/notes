@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SPA Router Example</title>
+</head>
+
+<body>
+    <div id="ELEMENT">Home</div>
+    <button onclick="router.push('/about')">Go to About</button>
+    <button onclick="router.push('/contact')">Go to Contact</button>
+    <button onclick="router.replace('/help')">Replace with Help</button>
+    <button onclick="router.go(-1)">Go Back</button>
+    <button onclick="router.go(1)">Go Forward</button>
+</body>
+
+<script type="module">
+    export class BaseRouter {
+        // list 路由表
+        constructor(list) {
+            this.list = list;   // this 代表新创建的类的实例 因此每个BaseRouter实例都会有一个list属性，其值取决于创建实例时传递给构造函数的值
+        }
+        // 页面渲染函数
+        render(state) {  // state表示当前的路由状态(例如一个路径)
+            let e = this.list.find(e => e.path === state);
+            e = e ? e : this.list.find(e => e.path === '*');  // 默认路由项 *
+            ELEMENT.innerText = e.component;
+        }
+    }
+
+    export class HashRouter extends BaseRouter {
+        constructor(list) {
+            super(list);
+            this.handler();  // 初始化路由
+            // 监听 hashchange 事件
+            window.addEventListener('hashchange', e => {
+                this.handler();
+            });
+        }
+        // hash改变时，重新渲染页面
+        handler() {
+            this.render(this.getState());  // 当前URL的hash变化时，调用this.handler()响应这个变化
+        }
+        // 获取hash值
+        getState() {
+            const hash = window.location.hash;
+            return hash ? hash.slice(1) : '/';  // 如果存在hash，去掉第一个字符"#"返回，否则返回 '/'
+        }
+        // push新的页面
+        push(path) {
+            window.location.hash = path;  // 更改window.location.hash会导致URL的hash改变，但不会重新加载页面，这是SPA路由跳转的常用技术
+        }
+        // 获取默认页URL
+        getURL(path) {
+            const href = window.location.href;
+            const i = href.indexOf('#');  // 找到URL中#字符的位置
+            const base = i >= 0 ? href.slice(0, i) : href;  // #存在则提取从开始到#之前的所有部分作为baseURL，否则提取整个href(效果等价)
+            return base + '#' + path;
+        }
+        // 替换页面 
+        replace(path) {
+            window.location.replace(this.getURL(path));   // replace()方法会将当前URL替换为新的URL，会替换浏览器历史记录中的当前条目，而不是添加一个新条目
+        }
+        // 前进/后退浏览历史
+        go(n) {
+            window.history.go(n);
+        }
+    }
+
+    const router = new HashRouter([
+        { path: '/', component: 'Home' },
+        { path: '/about', component: 'About' },
+        { path: '/contact', component: 'Contact' },
+        { path: '/help', component: 'Help' },
+        { path: '*', component: '404 Not Found' }
+    ]);
+    // 将router对象暴露给window对象，使路由器可在全局作用域访问
+    window.router = router;
+</script>
+
+</html>
