@@ -90,7 +90,7 @@ export default function Root() {
 				</nav>
 			</div>
 			<div id="detail">
-				{/* we need to tell the root route where we want to render its child routes, we do that with <Outlet>  */}
+				{/*  充当占位符，表示子路由组件应该在父路由组件的哪个位置被渲染 */}
 				<Outlet />
 			</div>
 		</>
