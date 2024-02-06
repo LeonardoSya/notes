@@ -1,6 +1,6 @@
-import {useEffect, useState, useRef, useLayoutEffect, useCallback} from 'react';
+import { useEffect, useState, useRef, useLayoutEffect, useCallback } from 'react';
 
-const useInterval = (fn:Function, time:number) => {
+const useInterval = (fn: Function, time: number) => {
   const ref = useRef(fn);
 
   useLayoutEffect(() => {
@@ -11,7 +11,7 @@ const useInterval = (fn:Function, time:number) => {
 
   const clean = useCallback(() => {
     cleanUpFnRef.current?.();
-  },[]);
+  }, []);
 
   useEffect(() => {
     const timer = setInterval(() => ref.current(), time);
@@ -21,7 +21,7 @@ const useInterval = (fn:Function, time:number) => {
     }
 
     return clean;
-  },[]);
+  }, []);
 };
 
 const App = () => {
