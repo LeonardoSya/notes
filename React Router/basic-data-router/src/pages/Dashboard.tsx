@@ -1,4 +1,3 @@
-import exp from 'constants';
 import { Outlet, Link, useLoaderData } from 'react-router-dom';
 
 export function DashboardLayout() {
@@ -31,9 +30,31 @@ export function DashboardIndex() {
 }
 
 interface MessagesData {
-    message: string[];
+    messages: string[];
 }
 
 export async function dashboardMessagesLoader() {
     await new Promise((r) => setTimeout(r, 500));
+    return {
+        messages: [
+            "Message 1 from Dashboard.tsx loader",
+            "Message 2 from Dashboard.tsx loader",
+            "Message 3 from Dashboard.tsx loader",
+        ],
+    } as MessagesData;
+}
+
+export function DashboardMessages() {
+    const { messages } = useLoaderData() as MessagesData;
+
+    return (
+        <div>
+            <h2>Messages</h2>
+            <ul>
+                {messages.map((message) => (
+                    <li key={message}>{message}</li>
+                ))}
+            </ul>
+        </div>
+  );
 }
