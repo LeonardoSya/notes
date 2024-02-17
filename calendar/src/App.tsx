@@ -120,12 +120,12 @@ const Test = () => {
 
     setTimeout(() => {
       calendarRef.current?.setDate(new Date('2024-3-30'));
-    }, 3000);
+    }, 2000);
   }, []);
 
   return (
     <>
-      <Calendar value={new Date('2024-3-30')} onChange={(date: Date) => console.log(date.toLocaleDateString())} />
+      {/* <Calendar value={new Date('2024-3-30')} onChange={(date: Date) => console.log(date.toLocaleDateString())} /> */}
       <Calendar ref={calendarRef} value={new Date('2024-6-24')} />
     </>
   )
