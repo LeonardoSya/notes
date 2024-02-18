@@ -5,18 +5,18 @@
 
 .calendar-month {
   &-week-list {
-    display: flex;  // 所有子元素将在一行内排列，根据flex属性进行伸缩
+    display: flex; // 所有子元素将在一行内排列，根据flex属性进行伸缩
     padding: 0;
     width: 100%;
     box-sizing: border-box;
     border-bottom: 1px solid #ccc;
-  }
 
-  &-week-list-item {
-    padding: 20px 16px;
-    text-align: left;
-    color: #7d7d7f;
-    flex: 1;  // flex-grow的简写，意味着所有元素都会平均分配容器中的空间
+    &-item {
+      padding: 20px 16px;
+      text-align: left;
+      color: #7d7d7f;
+      flex: 1; // flex-grow的简写，意味着所有元素都会平均分配容器中的空间
+    }
   }
 
   &-body {
@@ -29,7 +29,54 @@
       flex: 1;
       border: 1px solid #eee;
       padding: 10px;
+      color: #929292;
+      &-current {
+        color: #77abf4;
+      }
     }
   }
 }
 
+.calendar-header {
+  &-left {
+    display: flex;
+    align-items: center;
+    height: 28px;
+    line-height: 28px;
+  }
+
+  &-value {
+    font-size: 20px;
+  }
+
+  &-btn {
+    background: #eee;
+    cursor: pointer;
+    border: 0;
+    padding: 0 15px;
+    line-height: 28px;
+
+    &:hover {
+      background-color: #ccc;
+    }
+  }
+
+  &-icon {
+    width: 28px;
+    height: 28px;
+    line-height: 28px;
+    text-align: center;
+    font-size: 12px;
+    border-radius: 50%;
+    user-select: none;
+    cursor: pointer;
+    margin-right: 12px;
+    &:not(:first-child) {
+      margin: 0 12px;
+    }
+
+    &:hover {
+      background: #ccc;
+    }
+  }
+}
