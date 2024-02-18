@@ -27,4 +27,52 @@
   flex: 1;
   border: 1px solid #eee;
   padding: 10px;
+  color: #929292;
+}
+
+.calendar-month-body-cell-current {
+  color: #77abf4;
+}
+
+.calendar-header-left {
+  display: flex;
+  align-items: center;
+  height: 28px;
+  line-height: 28px;
+}
+
+.calendar-header-value {
+  font-size: 20px;
+}
+
+.calendar-header-btn {
+  background: #eee;
+  cursor: pointer;
+  border: 0;
+  padding: 0 15px;
+  line-height: 28px;
+}
+
+.calendar-header-btn:hover {
+  background-color: #ccc;
+}
+
+.calendar-header-icon {
+  width: 28px;
+  height: 28px;
+  line-height: 28px;
+  text-align: center;
+  font-size: 12px;
+  border-radius: 50%;
+  user-select: none;
+  cursor: pointer;
+  margin-right: 12px;
+}
+
+.calendar-header-icon:not(:first-child) {
+  margin: 0 12px;
+}
+
+.calendar-header-icon:hover {
+  background: #ccc;
 }
