@@ -1,7 +1,8 @@
-import { CSSProperties, ReactNode, useState} from 'react';
+import { CSSProperties, ReactNode, useState } from 'react';
 import { Dayjs } from 'dayjs';
 import MonthCalendar from './month-calendar';
 import Header from './header';
+import cs from 'classnames';
 import './App.scss';
 
 
@@ -15,11 +16,20 @@ export interface CalendarProps {
     dateInnerContent?: (currentDate: Dayjs) => ReactNode,
     // 国际化
     locale?: string;
+    // 选择日期后触发的回调
     onChange?: (date: Dayjs) => void;
 }
 
 const Calendar = (props: CalendarProps) => {
-    return <div className="calendar">
+    const {
+        value,
+        style,
+        className
+    } = props;
+
+    const classNames = cs('calendar', className);
+
+    return <div className={classNames} style={style}>
         <Header />
         <MonthCalendar {...props} />
     </div>
