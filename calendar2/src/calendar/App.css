@@ -28,6 +28,7 @@
   border: 1px solid #eee;
   padding: 10px;
   color: #929292;
+  overflow: hidden;
 }
 
 .calendar-month-body-cell-current {
