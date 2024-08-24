@@ -16,17 +16,11 @@ export async function test() {
         // 模拟异步延迟
         await sleep(Math.random() * 1000)
         // 返回对应用户的帖子数量
-        return users.find((user) => user.id === userId)?.posts
+        return users.find((user) => user.id === userId)?.posts  // find只返回原数组中第一个满足条件的元素，而map返回映射后的新数组
     }
 
-    async function sleep(time: number | undefined) {
-        return new Promise<void>((resolve, reject) => {
-            setTimeout(() => {
-                setTimeout(() => {
-                    resolve()
-                })
-            }, time)
-        })
+    async function sleep(time: number) {
+        return new Promise<void>(resolve => setTimeout(resolve, time))
     }
 
     async function addPosts(userId: number) {

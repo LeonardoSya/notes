@@ -1,4 +1,9 @@
 {
     "Codegeex.CandidateNum": "1 (快)",
-    "Codegeex.CompletionModel": "CodeGeeX Pro[Beta]"
+    "Codegeex.CompletionModel": "CodeGeeX Pro[Beta]",
+    "tailwindCSS.suggestions": false,
+    "typescript.suggest.includeAutomaticOptionalChainCompletions": false,
+    "typescript.suggest.autoImports": true,
+    "javascript.suggest.includeAutomaticOptionalChainCompletions": false,
+    "javascript.suggest.autoImports": true
 }
