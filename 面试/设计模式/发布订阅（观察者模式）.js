@@ -42,7 +42,6 @@ eventEmitter.on('logout', logout)
 
 // 触发事件 
 eventEmitter.emit('login', 'Alice')  // Alice has logged in
-eventEmitter.emit('login', 'Petter')  // Petter has logged in
 eventEmitter.emit('logout', 'Alice')  // Alice has logged out
 
 // 取消订阅
